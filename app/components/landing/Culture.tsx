@@ -6,9 +6,9 @@ export function Culture() {
         "Miss a deadline without prior communication = automatic score deduction. Two misses in a sprint = probation review.",
     },
     {
-      rule: "No attendance tracking",
+      rule: "Show up. Every day.",
       detail:
-        "We don't care when or where you work. We only care that the work ships on time and meets quality bars.",
+        "You work from the club office, alongside your peers. In-person, shoulder-to-shoulder. The energy compounds when everyone's in the room building together.",
     },
     {
       rule: "Output is the only metric",
