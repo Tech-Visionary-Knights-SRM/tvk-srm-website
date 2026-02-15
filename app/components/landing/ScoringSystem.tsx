@@ -1,11 +1,11 @@
 export function ScoringSystem() {
   const metrics = [
-    { name: "Execution Quality", weight: 30, desc: "Code/design/deliverable quality, completeness, and polish" },
+    { name: "Velocity", weight: 30, desc: "Speed of delivery relative to scope and complexity" },
+    { name: "Execution Quality", weight: 25, desc: "Code/design/deliverable quality, completeness, and polish" },
     { name: "Consistency", weight: 20, desc: "Hitting deadlines, daily/weekly output rhythm" },
-    { name: "Velocity", weight: 15, desc: "Speed of delivery relative to scope and complexity" },
-    { name: "Collaboration", weight: 15, desc: "PR reviews, helping teammates, async communication" },
+    { name: "Collaboration", weight: 10, desc: "PR reviews, helping teammates, async communication" },
     { name: "Initiative", weight: 10, desc: "Identifying problems, proposing solutions, self-starting" },
-    { name: "Growth", weight: 10, desc: "Skill improvement over time, learning new domains" },
+    { name: "Growth", weight: 5, desc: "Skill improvement over time, learning new domains" },
   ];
 
   return (
@@ -22,46 +22,43 @@ export function ScoringSystem() {
           tier, your stipend, and whether you stay. Fully transparent.
         </p>
 
-        <div className="space-y-3">
+        {/* Metric cards grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {metrics.map((m) => (
-            <div key={m.name} className="group">
-              <div className="flex items-center gap-4 mb-2">
-                <span className="text-white font-semibold w-48 sm:w-56 shrink-0">
-                  {m.name}
-                </span>
-                <div className="flex-1 h-2 bg-gray-800 rounded-full overflow-hidden">
-                  <div
-                    className="h-full bg-emerald-500 rounded-full transition-all duration-500"
-                    style={{ width: `${m.weight}%` }}
-                  />
-                </div>
-                <span className="text-emerald-400 font-mono text-sm font-bold w-12 text-right">
-                  {m.weight}%
+            <div
+              key={m.name}
+              className="border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <h3 className="text-white font-semibold">{m.name}</h3>
+                <span className="text-2xl font-black text-emerald-400 font-mono leading-none">
+                  {m.weight}
                 </span>
               </div>
-              <p className="text-xs text-gray-500 pl-0 sm:pl-56 sm:ml-4">
+              <p className="text-sm text-gray-500 leading-relaxed">
                 {m.desc}
               </p>
             </div>
           ))}
         </div>
 
+        {/* Score thresholds */}
         <div className="mt-12 border border-gray-800 rounded-lg p-6">
-          <h3 className="text-white font-semibold mb-3">Score Thresholds</h3>
+          <h3 className="text-white font-semibold mb-4">Score Thresholds</h3>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
-            <div>
+            <div className="border-l-2 border-red-500 pl-3">
               <span className="text-gray-500">Below 40</span>
               <p className="text-red-400 font-medium">Probation / Exit</p>
             </div>
-            <div>
-              <span className="text-gray-500">40–59</span>
+            <div className="border-l-2 border-yellow-500 pl-3">
+              <span className="text-gray-500">40 – 59</span>
               <p className="text-yellow-400 font-medium">Tier 1 — Builder</p>
             </div>
-            <div>
-              <span className="text-gray-500">60–79</span>
+            <div className="border-l-2 border-blue-500 pl-3">
+              <span className="text-gray-500">60 – 79</span>
               <p className="text-blue-400 font-medium">Tier 2 — IC</p>
             </div>
-            <div>
+            <div className="border-l-2 border-purple-500 pl-3">
               <span className="text-gray-500">80+</span>
               <p className="text-purple-400 font-medium">Tier 3+ — Lead</p>
             </div>

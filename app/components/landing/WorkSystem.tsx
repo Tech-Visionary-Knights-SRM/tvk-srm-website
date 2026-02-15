@@ -60,31 +60,36 @@ export function WorkSystem() {
             </h3>
             <div className="space-y-6">
               <div className="border border-gray-800 rounded-lg p-6">
-                <h4 className="text-white font-medium mb-4">Daily Blocks</h4>
+                <h4 className="text-white font-medium mb-4">Daily Structure</h4>
                 <div className="space-y-3 text-sm">
                   <div className="flex justify-between">
                     <span className="text-gray-400">
-                      Focus work block
+                      Core building hours (in-office)
                     </span>
                     <span className="text-emerald-400 font-mono">
-                      1.5–2 hrs
+                      3–4 hrs
                     </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">
-                      Async standup (text update)
+                      Deep work / self-directed
                     </span>
-                    <span className="text-emerald-400 font-mono">5 min</span>
+                    <span className="text-emerald-400 font-mono">
+                      1–2 hrs
+                    </span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-400">
-                      PR reviews / feedback
+                      PR reviews / standup / feedback
                     </span>
                     <span className="text-emerald-400 font-mono">
-                      15–30 min
+                      30 min
                     </span>
                   </div>
                 </div>
+                <p className="text-xs text-gray-600 mt-4">
+                  The best members naturally put in more. The scoreboard reflects it.
+                </p>
               </div>
 
               <div className="border border-gray-800 rounded-lg p-6">
