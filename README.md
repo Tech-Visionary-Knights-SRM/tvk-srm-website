@@ -1,87 +1,67 @@
-# Welcome to React Router!
+# XXX — Build. Ship. Lead.
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Landing page for XXX, a talent accelerator club at SRM Institute of Science and Technology. An execution-driven talent forge that identifies, stress-tests, and upgrades the top 1% of student builders.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## Tech Stack
 
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- React Router v7 (SPA mode)
+- TypeScript
+- Tailwind CSS v4
+- Firebase Hosting
 
 ## Getting Started
 
-### Installation
-
-Install the dependencies:
+Install dependencies:
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+Start the development server:
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+The app will be available at `http://localhost:5173`.
 
 ## Building for Production
-
-Create a production build:
 
 ```bash
 npm run build
 ```
 
-## Deployment
+Output goes to `build/client/` (static SPA).
 
-### Docker Deployment
-
-To build and run using Docker:
+## Deployment (Firebase)
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run build
+firebase deploy
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+Firebase Hosting is configured to serve from `build/client/` with SPA rewrites.
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+## Project Structure
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+app/
+  components/landing/
+    Navbar.tsx        # Sticky nav with smooth scroll
+    Hero.tsx          # Club name, tagline, one-liner
+    Identity.tsx      # Mission and what the club is NOT
+    EntryFunnel.tsx   # 3-phase selection process
+    Tracks.tsx        # 4 specialization verticals
+    TierSystem.tsx    # T0-T4 progression ladder
+    ScoringSystem.tsx # 100-point performance index
+    WorkSystem.tsx    # Project types and sprint cadence
+    Culture.tsx       # Non-negotiable rules
+    Financials.tsx    # Budget breakdown and revenue
+    Incentives.tsx    # Beyond-money benefits
+    Outcomes.tsx      # 24-month trajectory
+    CTA.tsx           # Apply section and footer
+  routes/
+    home.tsx          # Landing page (assembles all sections)
+  root.tsx            # App shell
+  app.css             # Global styles and Tailwind config
 ```
-
-## Styling
-
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
-
----
-
-Built with ❤️ using React Router.
