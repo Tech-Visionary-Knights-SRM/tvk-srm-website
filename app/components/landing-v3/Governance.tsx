@@ -36,7 +36,7 @@ export function Governance() {
           Structure & Accountability
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM is designed to be self-governing, transparent, and aligned
+          TEVIK SRM is designed to be self-governing, transparent, and aligned
           with SRM's institutional values.
         </p>
 

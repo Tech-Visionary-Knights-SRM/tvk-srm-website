@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "#identity", label: "What" },
@@ -38,7 +38,7 @@ export function Navbar() {
             href="#hero"
             className="text-white font-bold text-lg tracking-widest"
           >
-            TVK SRM
+            TEVIK SRM
           </a>
 
           {/* Desktop nav */}

@@ -36,7 +36,7 @@ export function StudentOutcomes() {
           What Members Walk Away With
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM is designed to produce measurable, career-relevant outcomes
+          TEVIK SRM is designed to produce measurable, career-relevant outcomes
           for every active member — not just participation certificates.
         </p>
 

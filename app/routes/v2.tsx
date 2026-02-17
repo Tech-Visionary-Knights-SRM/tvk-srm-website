@@ -1,14 +1,14 @@
-import type { Route } from "./+types/home";
-import { Navbar } from "../components/landing-v2/Navbar";
-import { Hero } from "../components/landing-v2/Hero";
-import { Problem } from "../components/landing-v2/Problem";
-import { Mission } from "../components/landing-v2/Mission";
-import { WhatWeDo } from "../components/landing-v2/WhatWeDo";
 import { ForSRM } from "../components/landing-v2/ForSRM";
-import { Tracks } from "../components/landing-v2/Tracks";
+import { Hero } from "../components/landing-v2/Hero";
 import { HowWeWork } from "../components/landing-v2/HowWeWork";
-import { WhoWeSeek } from "../components/landing-v2/WhoWeSeek";
 import { JoinUs } from "../components/landing-v2/JoinUs";
+import { Mission } from "../components/landing-v2/Mission";
+import { Navbar } from "../components/landing-v2/Navbar";
+import { Problem } from "../components/landing-v2/Problem";
+import { Tracks } from "../components/landing-v2/Tracks";
+import { WhatWeDo } from "../components/landing-v2/WhatWeDo";
+import { WhoWeSeek } from "../components/landing-v2/WhoWeSeek";
+import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,7 +19,7 @@ export function meta({}: Route.MetaArgs) {
     {
       name: "description",
       content:
-        "TVK SRM researches how AI is reshaping careers, identifies the skills that will matter most, and builds curricula to prepare students — before they graduate.",
+        "TEVIK SRM researches how AI is reshaping careers, identifies the skills that will matter most, and builds curricula to prepare students — before they graduate.",
     },
   ];
 }

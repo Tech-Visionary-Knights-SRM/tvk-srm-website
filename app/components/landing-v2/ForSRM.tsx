@@ -28,7 +28,7 @@ export function ForSRM() {
           Institutional Value
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM isn't just a student initiative — it creates tangible value
+          TEVIK SRM isn't just a student initiative — it creates tangible value
           for the institution and its broader mission.
         </p>
 

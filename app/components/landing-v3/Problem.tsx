@@ -56,8 +56,8 @@ export function Problem() {
           </p>
           <p className="text-gray-400 leading-relaxed">
             If the skills students are learning today can be replicated by AI
-            tomorrow, what should institutions be doing to prepare them? TVK SRM
-            exists to research that question — and act on the answers.
+            tomorrow, what should institutions be doing to prepare them? TEVIK
+            SRM exists to research that question — and act on the answers.
           </p>
         </div>
       </div>

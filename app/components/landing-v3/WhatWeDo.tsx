@@ -42,7 +42,7 @@ export function WhatWeDo() {
           Three Pillars of Work
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          Everything TVK SRM does falls into three interconnected areas —
+          Everything TEVIK SRM does falls into three interconnected areas —
           research informs skill identification, which informs curriculum
           development.
         </p>
@@ -61,9 +61,7 @@ export function WhatWeDo() {
                   <h3 className="text-xl font-semibold text-white mb-3">
                     {p.title}
                   </h3>
-                  <p className="text-gray-400 leading-relaxed mb-4">
-                    {p.desc}
-                  </p>
+                  <p className="text-gray-400 leading-relaxed mb-4">{p.desc}</p>
                   <div className="space-y-2">
                     {p.items.map((item) => (
                       <div key={item} className="flex items-start gap-3">

@@ -9,9 +9,9 @@ export function Identity() {
           Not a Club. A Talent Forge.
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM exists for one purpose: to identify raw potential, stress-test it
-          under real conditions, upgrade skills at an accelerated pace, and
-          retain the best operators SRM produces.
+          TEVIK SRM exists for one purpose: to identify raw potential,
+          stress-test it under real conditions, upgrade skills at an accelerated
+          pace, and retain the best operators SRM produces.
         </p>
 
         <div className="grid md:grid-cols-2 gap-8 mb-16">
@@ -22,10 +22,22 @@ export function Identity() {
             </h3>
             <div className="space-y-4">
               {[
-                { step: "Identify", desc: "Find the builders who ship, not just talk" },
-                { step: "Stress-test", desc: "Real deadlines, real users, real pressure" },
-                { step: "Upgrade", desc: "Structured skill acceleration across tracks" },
-                { step: "Retain", desc: "Keep the best — give them reasons to stay" },
+                {
+                  step: "Identify",
+                  desc: "Find the builders who ship, not just talk",
+                },
+                {
+                  step: "Stress-test",
+                  desc: "Real deadlines, real users, real pressure",
+                },
+                {
+                  step: "Upgrade",
+                  desc: "Structured skill acceleration across tracks",
+                },
+                {
+                  step: "Retain",
+                  desc: "Keep the best — give them reasons to stay",
+                },
               ].map((item) => (
                 <div key={item.step} className="flex items-start gap-3">
                   <span className="text-emerald-400 font-mono text-sm mt-0.5">

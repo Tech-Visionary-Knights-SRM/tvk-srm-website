@@ -9,7 +9,7 @@ export function FacultyAdvisor() {
           What We're Asking For
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM needs a faculty advisor to serve as the institutional bridge
+          TEVIK SRM needs a faculty advisor to serve as the institutional bridge
           between the club and SRM's administration. The role is advisory — not
           operational.
         </p>

@@ -25,7 +25,7 @@ export function Mission() {
               Mission
             </h3>
             <p className="text-gray-400 leading-relaxed mb-4">
-              TVK SRM researches how AI is transforming professional work,
+              TEVIK SRM researches how AI is transforming professional work,
               identifies the skills and knowledge that will remain uniquely
               valuable, and translates that research into actionable curricula,
               content, and learning experiences for students.

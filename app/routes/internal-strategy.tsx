@@ -2,7 +2,7 @@ import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "TVK SRM — Internal Strategy Document" },
+    { title: "TEVIK SRM — Internal Strategy Document" },
     { name: "robots", content: "noindex, nofollow" },
   ];
 }
@@ -16,7 +16,7 @@ export default function InternalStrategy() {
             Internal document — not linked anywhere
           </p>
           <p className="text-sm text-gray-500">
-            This page contains the full strategic model for TVK SRM including
+            This page contains the full strategic model for TEVIK SRM including
             talent pipeline, commercialization, and the two-layer structure. It
             is not indexed by search engines and is not linked from the public
             site.
@@ -32,16 +32,16 @@ export default function InternalStrategy() {
             The Two-Layer Model
           </h2>
           <p className="text-lg text-gray-400 leading-relaxed mb-10">
-            TVK SRM operates as two distinct but connected layers. This
-            separation keeps the university-facing club clean and
-            independently valuable, while creating a structured path for
-            commercial work under Techcora.
+            TEVIK SRM operates as two distinct but connected layers. This
+            separation keeps the university-facing club clean and independently
+            valuable, while creating a structured path for commercial work under
+            Techcora.
           </p>
 
           <div className="grid md:grid-cols-2 gap-8">
             <div className="border border-gray-800 rounded-lg p-8">
               <h3 className="text-xl font-semibold text-emerald-400 mb-4">
-                Layer 1 — The Club (TVK SRM)
+                Layer 1 — The Club (TEVIK SRM)
               </h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
                 University-registered student club. All output is open and
@@ -126,23 +126,27 @@ export default function InternalStrategy() {
             {[
               {
                 stage: "Stage 1 — Club member",
-                desc: "Student joins TVK SRM through the open onboarding process. Works on research, content, or projects within their chosen track. All work is educational and open.",
-                outcome: "Techcora observes: work quality, thinking, collaboration, initiative.",
+                desc: "Student joins TEVIK SRM through the open onboarding process. Works on research, content, or projects within their chosen track. All work is educational and open.",
+                outcome:
+                  "Techcora observes: work quality, thinking, collaboration, initiative.",
               },
               {
                 stage: "Stage 2 — Build program contributor",
                 desc: "When a member shows strong output and interest, they're invited to join a Techcora build-program project. They sign a contributor agreement and receive a stipend or internship letter.",
-                outcome: "Techcora evaluates: ability to ship, work under real constraints, own a piece of a product.",
+                outcome:
+                  "Techcora evaluates: ability to ship, work under real constraints, own a piece of a product.",
               },
               {
                 stage: "Stage 3 — Internship",
                 desc: "High-performing build-program contributors are offered formal Techcora internships. They work on company products with the team, with a clear path to a full-time offer.",
-                outcome: "Techcora decides: cultural fit, long-term potential, role alignment.",
+                outcome:
+                  "Techcora decides: cultural fit, long-term potential, role alignment.",
               },
               {
                 stage: "Stage 4 — Full-time hire",
                 desc: "After a successful internship, the offer is straightforward. By this point, both sides have 6-12+ months of real working history together.",
-                outcome: "Result: zero-risk hire with deep mutual context. No interview theater.",
+                outcome:
+                  "Result: zero-risk hire with deep mutual context. No interview theater.",
               },
             ].map((s) => (
               <div
@@ -316,14 +320,32 @@ export default function InternalStrategy() {
               </thead>
               <tbody>
                 {[
-                  ["Club events, workshops, content topics", "Club leads (elected)"],
+                  [
+                    "Club events, workshops, content topics",
+                    "Club leads (elected)",
+                  ],
                   ["Club membership and onboarding", "Club leads"],
-                  ["Research direction and conclusions", "Club leads + members"],
-                  ["Which projects move to build program", "Techcora + club leads jointly"],
-                  ["Commercial direction of build-program projects", "Techcora"],
-                  ["How sponsorship money is spent on club", "Club leads (quarterly transparency)"],
+                  [
+                    "Research direction and conclusions",
+                    "Club leads + members",
+                  ],
+                  [
+                    "Which projects move to build program",
+                    "Techcora + club leads jointly",
+                  ],
+                  [
+                    "Commercial direction of build-program projects",
+                    "Techcora",
+                  ],
+                  [
+                    "How sponsorship money is spent on club",
+                    "Club leads (quarterly transparency)",
+                  ],
                   ["Internship and job offers", "Techcora"],
-                  ["Contributor agreement terms", "Techcora (with legal review)"],
+                  [
+                    "Contributor agreement terms",
+                    "Techcora (with legal review)",
+                  ],
                 ].map(([decision, who]) => (
                   <tr
                     key={decision}
@@ -452,7 +474,7 @@ export default function InternalStrategy() {
         </section>
 
         <footer className="border-t border-gray-800 pt-8 text-sm text-gray-600 text-center">
-          TVK SRM — Internal Strategy Document — Not for public distribution
+          TEVIK SRM — Internal Strategy Document — Not for public distribution
         </footer>
       </div>
     </div>

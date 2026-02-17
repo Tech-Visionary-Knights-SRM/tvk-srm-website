@@ -28,8 +28,8 @@ export function Problem() {
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
           Students graduating between 2026 and 2030 will enter a job market
-          fundamentally different from the one their curricula were designed for.
-          The disruption isn't coming — it's here.
+          fundamentally different from the one their curricula were designed
+          for. The disruption isn't coming — it's here.
         </p>
 
         <div className="grid md:grid-cols-3 gap-6">
@@ -54,7 +54,7 @@ export function Problem() {
           <p className="text-gray-400 leading-relaxed">
             If the skills students are learning today can be replicated by AI
             tomorrow, what should they be learning instead? That's the question
-            TVK SRM exists to answer — and act on.
+            TEVIK SRM exists to answer — and act on.
           </p>
         </div>
       </div>

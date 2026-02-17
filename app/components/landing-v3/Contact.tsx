@@ -10,7 +10,7 @@ export function Contact() {
         </h2>
         <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-4">
           We'd welcome the opportunity to discuss this proposal in detail —
-          answer questions, refine the scope, and explore how TVK SRM can best
+          answer questions, refine the scope, and explore how TEVIK SRM can best
           serve the institution and its students.
         </p>
         <p className="text-gray-500 mb-10">
@@ -25,9 +25,7 @@ export function Contact() {
           Get in Touch
         </a>
 
-        <p className="mt-6 text-sm text-gray-600">
-          club@techcora.in
-        </p>
+        <p className="mt-6 text-sm text-gray-600">club@techcora.in</p>
       </div>
 
       <footer className="mt-24 border-t border-gray-800 pt-8 max-w-5xl mx-auto">

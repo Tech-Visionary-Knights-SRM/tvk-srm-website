@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const navLinks = [
   { href: "#problem", label: "Problem" },
@@ -35,7 +35,7 @@ export function Navbar() {
             href="#hero"
             className="text-white font-bold text-lg tracking-widest"
           >
-            TVK SRM
+            TEVIK SRM
           </a>
 
           <div className="hidden lg:flex items-center gap-1">

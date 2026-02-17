@@ -23,7 +23,7 @@ export function TechcoraPartnership() {
           Techcora Partnership
         </h2>
         <p className="text-lg text-gray-400 max-w-3xl mb-16 leading-relaxed">
-          TVK SRM is sponsored by Techcora, a technology company whose mission
+          TEVIK SRM is sponsored by Techcora, a technology company whose mission
           is to contribute to India's technical leadership. This partnership
           provides the club with resources and industry access while maintaining
           full academic independence.
@@ -69,11 +69,11 @@ export function TechcoraPartnership() {
           </h3>
           <p className="text-gray-400 leading-relaxed">
             Techcora's mission — contributing to India's technical excellence —
-            directly aligns with TVK SRM's goal of preparing students for the AI
-            era. The company benefits from access to well-prepared talent; the
-            club benefits from funding, mentorship, and industry context. Both
-            parties benefit from a transparent, well-defined relationship that
-            creates value for SRM's student community.
+            directly aligns with TEVIK SRM's goal of preparing students for the
+            AI era. The company benefits from access to well-prepared talent;
+            the club benefits from funding, mentorship, and industry context.
+            Both parties benefit from a transparent, well-defined relationship
+            that creates value for SRM's student community.
           </p>
         </div>
       </div>
