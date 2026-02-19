@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -8,9 +9,144 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function SRMCommitmentReport() {
+  const reportRef = useRef<HTMLDivElement>(null);
+  const [downloading, setDownloading] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    if (!reportRef.current) return;
+    setDownloading(true);
+
+    const html2canvasPro = (await import("html2canvas-pro")).default;
+    const { jsPDF } = await import("jspdf");
+
+    const el = reportRef.current;
+
+    // Clone into a fixed-width off-screen container so it renders at
+    // A4-proportional size instead of the full browser width
+    const clone = el.cloneNode(true) as HTMLElement;
+    clone.classList.add("pdf-export");
+    clone.style.position = "absolute";
+    clone.style.left = "-9999px";
+    clone.style.top = "0";
+    // 794px ≈ A4 width at 96dpi (210mm), gives proper text scale
+    clone.style.width = "794px";
+    document.body.appendChild(clone);
+
+    try {
+      const canvas = await html2canvasPro(clone, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+        windowWidth: 794,
+      });
+
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 10;
+      const contentWidth = pageWidth - margin * 2;
+
+      // How many canvas pixels fit in one A4 page's content area
+      const pxPerMm = canvas.width / contentWidth;
+      const pageContentHeightPx = Math.floor((pageHeight - margin * 2) * pxPerMm);
+
+      // Scan a row of pixels to check if it's blank (white)
+      const fullCtx = canvas.getContext("2d")!;
+      const isBlankRow = (y: number): boolean => {
+        const row = fullCtx.getImageData(0, y, canvas.width, 1).data;
+        for (let i = 0; i < row.length; i += 4) {
+          // If any pixel is not near-white, the row has content
+          if (row[i] < 240 || row[i + 1] < 240 || row[i + 2] < 240) return false;
+        }
+        return true;
+      };
+
+      // Find the best break point: scan upward from the ideal cut
+      // looking for a fully white row (gap between content)
+      const findBreakPoint = (idealCut: number): number => {
+        // Search within 20% above the ideal cut for a blank row
+        const searchRange = Math.floor(pageContentHeightPx * 0.2);
+        for (let y = idealCut; y > idealCut - searchRange && y > 0; y--) {
+          if (isBlankRow(y)) return y;
+        }
+        // No blank row found — fall back to the ideal cut
+        return idealCut;
+      };
+
+      // Slice the canvas into page-sized chunks at smart break points
+      let yOffset = 0;
+      let pageIndex = 0;
+
+      while (yOffset < canvas.height) {
+        let sliceEnd: number;
+        if (yOffset + pageContentHeightPx >= canvas.height) {
+          // Last page — take whatever's left
+          sliceEnd = canvas.height;
+        } else {
+          sliceEnd = findBreakPoint(yOffset + pageContentHeightPx);
+        }
+
+        const sliceHeight = sliceEnd - yOffset;
+
+        const pageCanvas = document.createElement("canvas");
+        pageCanvas.width = canvas.width;
+        pageCanvas.height = sliceHeight;
+        const ctx = pageCanvas.getContext("2d")!;
+        ctx.drawImage(
+          canvas,
+          0, yOffset, canvas.width, sliceHeight,
+          0, 0, canvas.width, sliceHeight,
+        );
+
+        const pageImgData = pageCanvas.toDataURL("image/jpeg", 0.98);
+        const sliceHeightMm = sliceHeight / pxPerMm;
+
+        if (pageIndex > 0) pdf.addPage();
+        pdf.addImage(pageImgData, "JPEG", margin, margin, contentWidth, sliceHeightMm);
+
+        yOffset = sliceEnd;
+        pageIndex++;
+      }
+
+      pdf.save("Techcora_SRM_Commitment_Report_AY2026-27.pdf");
+    } finally {
+      document.body.removeChild(clone);
+      setDownloading(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-950 text-gray-300 px-4 py-16 sm:py-24">
       <div className="max-w-4xl mx-auto">
+        {/* Download Button */}
+        <div className="mb-10 flex justify-end">
+          <button
+            onClick={handleDownloadPDF}
+            disabled={downloading}
+            className="flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 disabled:bg-emerald-800 disabled:text-emerald-400 text-gray-950 font-semibold rounded-lg transition-colors cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"
+              />
+            </svg>
+            {downloading ? "Generating PDF..." : "Download PDF"}
+          </button>
+        </div>
+
+        {/* Report content (captured for PDF) */}
+        <div ref={reportRef}>
+
         {/* Header */}
         <div className="mb-20">
           <p className="text-sm uppercase tracking-[0.2em] text-emerald-400 mb-6">
@@ -532,7 +668,131 @@ export default function SRMCommitmentReport() {
           Techcora × SRM College — Commitment Report AY 2026–2027 —
           Confidential
         </footer>
+
+        </div>{/* end reportRef */}
       </div>
+
+      {/* White-paper styles applied during PDF capture */}
+      <style>{`
+        /* ---- Base reset ---- */
+        .pdf-export {
+          background: #ffffff !important;
+          color: #1a1a1a !important;
+          padding: 40px 48px !important;
+          font-family: "Inter", system-ui, sans-serif !important;
+          font-size: 11px !important;
+          line-height: 1.6 !important;
+        }
+        .pdf-export * {
+          color: #1a1a1a !important;
+          border-color: #d4d4d4 !important;
+        }
+
+        /* ---- Typography scale (document-standard) ---- */
+        .pdf-export h1 {
+          font-size: 22px !important;
+          line-height: 1.2 !important;
+          margin-bottom: 8px !important;
+        }
+        .pdf-export h2 {
+          font-size: 17px !important;
+          line-height: 1.3 !important;
+          margin-bottom: 6px !important;
+        }
+        .pdf-export h3 {
+          font-size: 13px !important;
+          line-height: 1.4 !important;
+          margin-bottom: 4px !important;
+        }
+        .pdf-export p,
+        .pdf-export span,
+        .pdf-export td,
+        .pdf-export th {
+          font-size: 11px !important;
+          line-height: 1.6 !important;
+        }
+        .pdf-export footer {
+          font-size: 9px !important;
+        }
+
+        /* ---- Section numbers / small caps labels ---- */
+        .pdf-export .text-sm.uppercase {
+          font-size: 9px !important;
+          letter-spacing: 0.15em !important;
+          margin-bottom: 4px !important;
+          color: #444444 !important;
+          font-weight: 600 !important;
+        }
+
+        /* ---- Metric cards (executive summary) ---- */
+        .pdf-export .text-3xl {
+          font-size: 18px !important;
+          line-height: 1.2 !important;
+        }
+
+        /* ---- Spacing reduction ---- */
+        .pdf-export section {
+          margin-bottom: 28px !important;
+        }
+        .pdf-export .mb-20 { margin-bottom: 28px !important; }
+        .pdf-export .mb-16 { margin-bottom: 20px !important; }
+        .pdf-export .mb-10 { margin-bottom: 14px !important; }
+        .pdf-export .mb-8  { margin-bottom: 10px !important; }
+        .pdf-export .mb-6  { margin-bottom: 8px !important; }
+        .pdf-export .mb-4  { margin-bottom: 5px !important; }
+        .pdf-export .p-8   { padding: 14px !important; }
+        .pdf-export .p-6   { padding: 12px !important; }
+        .pdf-export .gap-8  { gap: 12px !important; }
+        .pdf-export .gap-6  { gap: 10px !important; }
+        .pdf-export .gap-4  { gap: 8px !important; }
+        .pdf-export .gap-12 { gap: 16px !important; }
+        .pdf-export .space-y-6 > * + * { margin-top: 10px !important; }
+        .pdf-export .space-y-4 > * + * { margin-top: 6px !important; }
+        .pdf-export .space-y-3 > * + * { margin-top: 4px !important; }
+        .pdf-export .py-16 { padding-top: 0 !important; padding-bottom: 0 !important; }
+
+        /* ---- Table ---- */
+        .pdf-export table { font-size: 10px !important; }
+        .pdf-export td, .pdf-export th { padding: 6px 10px !important; }
+
+        /* ---- Muted text ---- */
+        .pdf-export .text-gray-400,
+        .pdf-export .text-gray-500,
+        .pdf-export .text-gray-600 {
+          color: #555555 !important;
+        }
+
+        /* ---- Amber notice boxes ---- */
+        .pdf-export [class*="bg-amber"] {
+          background: #fffbeb !important;
+        }
+        .pdf-export [class*="border-amber"] {
+          border-color: #d97706 !important;
+        }
+        .pdf-export .text-amber-400 {
+          color: #92400e !important;
+          font-weight: 600 !important;
+        }
+
+        /* ---- Clean backgrounds ---- */
+        .pdf-export [class*="bg-gray"] {
+          background: transparent !important;
+        }
+        .pdf-export [class*="hover\\:bg"] {
+          background: transparent !important;
+        }
+
+        /* ---- Signature line ---- */
+        .pdf-export .h-20 {
+          height: 50px !important;
+        }
+
+        /* ---- Emerald accent in print → dark for contrast ---- */
+        .pdf-export .text-emerald-400 {
+          color: #065f46 !important;
+          font-weight: 600 !important;
+        }
+      `}</style>
     </div>
   );
 }
