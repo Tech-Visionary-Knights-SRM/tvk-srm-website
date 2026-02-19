@@ -9,4 +9,5 @@ export default [
   route("internal/directives-v2", "routes/internal-directives-v2.tsx"),
   route("assets/yt-profile", "routes/yt-profile.tsx"),
   route("assets/yt-banner", "routes/yt-banner.tsx"),
+  route("internal/srm-commitment-report", "routes/srm-commitment-report.tsx"),
 ] satisfies RouteConfig;
