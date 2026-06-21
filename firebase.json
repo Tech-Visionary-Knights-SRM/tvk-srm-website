@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "target": "tvksrm",
     "public": "build/client",
     "ignore": [
       "firebase.json",

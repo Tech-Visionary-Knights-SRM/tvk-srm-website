@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "srm-club"
+  },
+  "targets": {
+    "srm-club": {
+      "hosting": {
+        "tvksrm": [
+          "tvksrm"
+        ]
+      }
+    }
   }
 }
